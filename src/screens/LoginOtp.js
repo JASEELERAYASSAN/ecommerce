@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 export default function LoginOtp() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Otp</Text>
         </View>
     )
