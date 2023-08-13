@@ -1,16 +1,15 @@
 import React, { useState, useRef } from 'react'
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import CardView from 'react-native-cardview'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement } from '../redux/reducer/counterSlice'
 
 
-export default function HomeScreen({ }) {
+export default function HomeScreen({ navigation }) {
 
     const counter = useSelector((state) => state.counter.value)
     const dispatch = useDispatch()
-
 
     const data = [
         { id: 1, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '250', sellingPrice: '200', quantity: '', disPercentage: '-20%' },
@@ -23,13 +22,15 @@ export default function HomeScreen({ }) {
     ];
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white', }}>
+        <View style={{ alignItems: 'center', backgroundColor: 'white', }}>
             <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
                 <Image source={require('../assets/profile.png')} />
             </View>
-            <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
-                <Image source={require('../assets/store.png')} />
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('CheckOutScreen')}>
+                <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
+                    <Image source={require('../assets/store.png')} />
+                </View>
+            </TouchableOpacity>
             <View style={{ height: hp('10'), width: wp('100'), alignItems: 'flex-end', justifyContent: 'center', margin: hp('1') }}>
                 <Image source={require('../assets/banner.png')} />
             </View>
@@ -43,7 +44,7 @@ export default function HomeScreen({ }) {
                     <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.7'), margin: hp('1') }}>Tea</Text>
                 </View>
                 <View>
-                    <Image source={require('../assets/drink.png')} />
+                    <Image source={require('../assets/drink.png')} resizeMode='cover' />
                     <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.7'), margin: hp('1') }}>Drink</Text>
                 </View>
                 <View>
@@ -55,35 +56,34 @@ export default function HomeScreen({ }) {
                 data={data}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) =>
-                    <TouchableOpacity activeOpacity={.8} onPress={{}}>
-                        <CardView style={styles.cardView}
-                            cardElevation={5}>
-                            <View style={styles.imageView}>
-                                <Image source={item.prdImage} style={{ width: wp('30'), height: hp('9') }} />
+
+                    <CardView style={styles.cardView}
+                        cardElevation={5}>
+                        <View style={styles.imageView}>
+                            <Image source={item.prdImage} style={{ width: wp('30'), height: hp('9') }} />
+                        </View>
+                        <View style={styles.detailsView}>
+                            <View style={{ height: hp('3%'), width: wp('40') }}>
+                                <Text style={{ color: 'black', fontWeight: '500', fontSize: hp('1.7'), }}>{item.prdName}</Text>
                             </View>
-                            <View style={styles.detailsView}>
-                                <View style={{ height: hp('3%'), width: wp('40') }}>
-                                    <Text style={{ color: 'black', fontWeight: '500', fontSize: hp('1.7'), }}>{item.prdName}</Text>
-                                </View>
-                                <View style={{ height: hp('5%'), width: wp('40'), flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <Text style={{ textAlign: 'center', color: 'black', fontWeight: '700', fontSize: hp('2') }} >{item.sellingPrice}/kg</Text>
-                                    <Text style={{ textAlign: 'center', color: '#B8B8B8', fontWeight: '500', fontSize: hp('2') }}>{item.price}</Text>
-                                    <View style={{ height: hp('3'), width: wp('10'), backgroundColor: '#F9C941', alignItems: 'center', justifyContent: 'center', borderRadius: wp('1') }}>
-                                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: hp('2') }}>{item.disPercentage}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.quantityView}>
-                                    <TouchableOpacity onPress={() => dispatch(decrement())} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
-                                        <Image source={require('../assets/minus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginLeft: wp('1') }} />
-                                    </TouchableOpacity>
-                                    <Text style={{ color: '#959595' }}> Nos</Text>
-                                    <TouchableOpacity onPress={() => dispatch(increment())} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
-                                        <Image source={require('../assets/plus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginRight: wp('1') }} />
-                                    </TouchableOpacity>
+                            <View style={{ height: hp('5%'), width: wp('40'), flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: '700', fontSize: hp('2') }} >{item.sellingPrice}/kg</Text>
+                                <Text style={{ textAlign: 'center', color: '#B8B8B8', fontWeight: '500', fontSize: hp('2') }}>{item.price}</Text>
+                                <View style={{ height: hp('3'), width: wp('10'), backgroundColor: '#F9C941', alignItems: 'center', justifyContent: 'center', borderRadius: wp('1') }}>
+                                    <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: hp('2') }}>{item.disPercentage}</Text>
                                 </View>
                             </View>
-                        </CardView>
-                    </TouchableOpacity>
+                            <View style={styles.quantityView}>
+                                <TouchableOpacity onPress={() => { dispatch(decrement()) }} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
+                                    <Image source={require('../assets/minus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginLeft: wp('1') }} />
+                                </TouchableOpacity>
+                                <Text style={{ color: '#959595' }}>{counter} Nos</Text>
+                                <TouchableOpacity onPress={() => { dispatch(increment()) }} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
+                                    <Image source={require('../assets/plus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginRight: wp('1') }} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </CardView>
                 }
             />
         </View>
