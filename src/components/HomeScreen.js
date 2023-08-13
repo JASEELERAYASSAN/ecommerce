@@ -2,27 +2,15 @@ import React, { useState, useRef } from 'react'
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, FlatList } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import CardView from 'react-native-cardview'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { increment, decrement } from '../redux/reducer/counterSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, decrement } from '../redux/reducer/counterSlice'
 
 
 export default function HomeScreen({ }) {
 
-    // const counter = useSelector((state) => state.counter.value)
-    // const dispatch = useDispatch()
-    const [quantity, setQuantity] = useState('')
+    const counter = useSelector((state) => state.counter.value)
+    const dispatch = useDispatch()
 
-    const incrementQuantity = ({ }) => {
-        if (quantity >= 0) {
-            setQuantity(quantity + 1)
-        } 
-    }
-
-    const decrementQuantity = () => {
-        if (quantity > 0) {
-            setQuantity(quantity - 1)
-        }
-    }
 
     const data = [
         { id: 1, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '250', sellingPrice: '200', quantity: '', disPercentage: '-20%' },
@@ -63,15 +51,6 @@ export default function HomeScreen({ }) {
                     <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.7'), margin: hp('1') }}>Others</Text>
                 </View>
             </View>
-            {/* <View style={{ width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
-                <Text>Counter: {counter}</Text>
-                <TouchableOpacity onPress={() => dispatch(increment())}>
-                    <Text>Increment</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => dispatch(decrement())}>
-                    <Text>Decrement</Text>
-                </TouchableOpacity>
-            </View> */}
             <FlatList
                 data={data}
                 keyExtractor={item => item.id.toString()}
@@ -94,11 +73,11 @@ export default function HomeScreen({ }) {
                                     </View>
                                 </View>
                                 <View style={styles.quantityView}>
-                                    <TouchableOpacity onPress={decrementQuantity} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9'), }}>
+                                    <TouchableOpacity onPress={() => dispatch(decrement())} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
                                         <Image source={require('../assets/minus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginLeft: wp('1') }} />
                                     </TouchableOpacity>
-                                    <Text style={{ color: '#959595' }}>{quantity} Nos</Text>
-                                    <TouchableOpacity onPress={incrementQuantity} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9'), }}>
+                                    <Text style={{ color: '#959595' }}> Nos</Text>
+                                    <TouchableOpacity onPress={() => dispatch(increment())} style={{ borderRadius: wp('1'), height: hp('4'), width: wp('9') }}>
                                         <Image source={require('../assets/plus.png')} style={{ height: hp('4'), width: wp('8'), alignItems: 'center', justifyContent: 'center', marginRight: wp('1') }} />
                                     </TouchableOpacity>
                                 </View>

@@ -23,16 +23,13 @@ export default function LoginActivity({ navigation, route }) {
                 navigation.navigate('LoginOtp', { confirm: confirmation });
             }
         } catch (error) {
-            console.log(error, 'e')
             Toast.show('Failed to Sent OTP')
         }
     }
 
     const getOTP = () => {
         signInWithPhoneNumber('+' + country + phoneNumber)
-
     }
-    console.log(phoneNumber, 'hy')
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
