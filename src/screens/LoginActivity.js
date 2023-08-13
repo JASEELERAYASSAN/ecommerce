@@ -1,10 +1,68 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState, useRef } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import PhoneInput from "react-native-phone-number-input";
+import Toast from "react-native-simple-toast";
+import auth from '@react-native-firebase/auth';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default function LoginActivity() {
+
+
+export default function LoginActivity({ navigation, route }) {
+
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [country, setCountry] = useState('+91')
+    const [confirm, setConfirm] = useState('')
+
+    const phoneInput = useRef(null);
+
+    async function signInWithPhoneNumber(number) {
+        try {
+            const confirmation = await auth().signInWithPhoneNumber(number)
+            if (confirmation.state != 'error') {
+                Toast.show('OTP Sented')
+                navigation.navigate('LoginOtp', { confirm: confirmation });
+            }
+        } catch (error) {
+            console.log(error, 'e')
+            Toast.show('Failed to Sent OTP')
+        }
+    }
+
+    const getOTP = () => {
+        signInWithPhoneNumber('+' + country + phoneNumber)
+
+    }
+    console.log(phoneNumber, 'hy')
+
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Login</Text>
+            <View style={{marginBottom:hp('4')}}>
+                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2.5'), textAlign: 'center' }} >e-Commerce</Text>
+            </View>
+            <View style= {{ alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2')}}>Enter Your Mobile Number</Text>
+            </View>
+            <View>
+                <PhoneInput
+                    ref={phoneInput}
+                    defaultValue={phoneNumber}
+                    defaultCode="IN"
+                    codeTextStyle={{ fontSize: hp('1.75%'), marginBottom: hp(0.2) }}
+                    textInputStyle={{ fontSize: hp('1.75%'), }}
+                    textContainerStyle={{ borderRadius: 10, paddingVertical: 0, backgroundColor: '#fff', height: hp('5.9') }}
+                    onChangeText={text => setPhoneNumber(text)}
+                    containerStyle={{ height: hp('6'), width: wp('90'), borderWidth: wp('.1'), borderColor: 'gray', borderRadius: hp('1'), margin: hp('1.5'), textAlign: 'center' }}
+                    onChangeCountry={text => {
+                        setCountry(text.callingCode.join(','))
+                    }}
+                />
+            </View>
+            <View>
+                <TouchableOpacity onPress={() => getOTP()}
+                    style={{ height: hp('5'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>GET OTP</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
