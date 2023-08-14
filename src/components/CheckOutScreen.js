@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import CardView from 'react-native-cardview'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateAddToCart, updateRemoveFromCart } from '../redux/reducer/counterSlice'
+import Toast from 'react-native-simple-toast'
 
 export default function CheckOutScreen({ navigation: { goBack }, route }) {
 
@@ -67,15 +68,19 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
             <View style={{ alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
                 <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('2'), margin: hp('1') }}>Recommended</Text>
             </View>
-            <View style={{ height: hp('18'), width: wp('96'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
-                <Image source={require('../assets/products.png')} />
-            </View>
+            <TouchableOpacity activeOpacity={.8} onPress={() => Toast.show('Coming Soon')}>
+                <View style={{ height: hp('18'), width: wp('96'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
+                    <Image source={require('../assets/products.png')} />
+                </View>
+            </TouchableOpacity>
             {counter.length > 0 ? <View>
                 <View style={{ flexDirection: 'row', height: hp('13'), width: wp('96'), alignItems: 'center', justifyContent: 'space-evenly', margin: hp('1') }}>
-                    <View style={{ height: hp('10.5'), width: wp('35'), borderWidth: wp('.4'), borderColor: '#D8D8D8', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2') }}>
-                        <Image source={require('../assets/instadel.png')} />
-                        <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.5'), margin: hp('1') }}>Instant delivery</Text>
-                    </View>
+                    <TouchableOpacity activeOpacity={.8} onPress={() => Toast.show('Coming Soon')}>
+                        <View style={{ height: hp('10.5'), width: wp('35'), borderWidth: wp('.4'), borderColor: '#D8D8D8', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2') }}>
+                            <Image source={require('../assets/instadel.png')} />
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.5'), margin: hp('1') }}>Instant delivery</Text>
+                        </View>
+                    </TouchableOpacity>
                     <View style={{ height: hp('10.5'), width: wp('35'), borderWidth: wp('.4'), borderColor: '#08C25D', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2') }}>
                         <Image source={require('../assets/timedel.png')} />
                         <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.5'), margin: hp('1') }}>Scheduled delivery</Text>
@@ -83,10 +88,10 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
                 </View>
                 <View style={{ flexDirection: 'row', height: hp('7'), width: wp('96'), alignItems: 'center', justifyContent: 'space-evenly', margin: hp('1') }}>
                     <View style={{ height: hp('5'), width: wp('40'), borderWidth: wp('.1'), borderColor: '#D8D8D8', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2'), backgroundColor: '#08C25D' }}>
-                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>Instant delivery</Text>
+                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>Today</Text>
                     </View>
                     <View style={{ height: hp('5'), width: wp('40'), borderWidth: wp('.4'), borderColor: '#D8D8D8', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2') }}>
-                        <Text style={{ textAlign: 'center', color: 'black', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>Scheduled delivery</Text>
+                        <Text style={{ textAlign: 'center', color: 'black', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>Tommorrow</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', height: hp('13'), width: wp('96'), alignItems: 'center', justifyContent: 'space-evenly', margin: hp('1') }}>
@@ -121,7 +126,9 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
                 </View>
                 <View style={{ flexDirection: 'row', height: hp('7'), width: wp('75'), alignItems: 'center', justifyContent: 'center', margin: hp('2') }}>
                     <Text style={{ textAlign: 'center', color: 'black', fontWeight: '500', fontSize: hp('1.5'), }}>Do you have a promo code ? </Text>
-                    <Text style={{ textAlign: 'center', color: '#08C25D', fontWeight: '500', fontSize: hp('1.5'), }}> Redeem Now</Text>
+                    <TouchableOpacity onPress={() => Toast.show('Coming Soon')}>
+                        <Text style={{ textAlign: 'center', color: '#08C25D', fontWeight: '500', fontSize: hp('1.5'), }}> Redeem Now</Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <View style={{ height: hp('10'), width: wp('96'), alignItems: 'center', justifyContent: 'space-evenly', margin: hp('1') }}>
@@ -168,7 +175,7 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
                         </View>
                     </View>
                     <View style={{ height: hp('10'), width: wp('100') }}>
-                        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', width: wp('90'), height: hp('7'), backgroundColor: '#F5F5F5', borderRadius: wp('2'), marginLeft: wp('5'), borderColor: '#08C25D', borderWidth: wp(.4) }} >
+                        <TouchableOpacity activeOpacity={.8} onPress={() => Toast.show('Coming Soon')} style={{ alignItems: 'center', justifyContent: 'center', width: wp('90'), height: hp('7'), backgroundColor: '#F5F5F5', borderRadius: wp('2'), marginLeft: wp('5'), borderColor: '#08C25D', borderWidth: wp(.4) }} >
                             <Text style={{ textAlign: 'center', color: '#333333', fontWeight: '500', fontSize: hp('2') }}>Proceed</Text>
                         </TouchableOpacity>
                     </View>
@@ -199,8 +206,8 @@ const styles = StyleSheet.create({
         height: hp('17.5%'),
         width: wp('90'),
         alignItems: 'center',
-        borderRadius: hp('4'),
-        justifyContent: 'center'
+        borderRadius: hp('5'),
+        backgroundColor: 'white'
     },
     imageView: {
         height: hp('8%'),
