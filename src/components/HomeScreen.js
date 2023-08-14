@@ -40,11 +40,9 @@ export default function HomeScreen({ navigation }) {
             <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
                 <Image source={require('../assets/profile.png')} />
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('CheckOutScreen', { counter })}>
-                <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
-                    <Image source={require('../assets/store.png')} />
-                </View>
-            </TouchableOpacity>
+            <View style={{ height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'center', margin: hp('1') }}>
+                <Image source={require('../assets/store.png')} />
+            </View>
             <View style={{ height: hp('10'), width: wp('100'), alignItems: 'flex-end', justifyContent: 'center', margin: hp('1') }}>
                 <Image source={require('../assets/banner.png')} />
             </View>
