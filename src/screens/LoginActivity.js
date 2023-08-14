@@ -25,6 +25,7 @@ export default function LoginActivity({ navigation, route }) {
                 navigation.navigate('LoginOtp', { confirm: confirmation });
             }
         } catch (error) {
+            console.log(error,'mobile');
             Toast.show('Failed to Sent OTP')
         }
     }
@@ -34,12 +35,12 @@ export default function LoginActivity({ navigation, route }) {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <View style={{marginBottom:hp('4')}}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
+            <View style={{ marginBottom: hp('4') }}>
                 <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2.5'), textAlign: 'center' }} >e-Commerce</Text>
             </View>
-            <View style= {{ alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2')}}>Enter Your Mobile Number</Text>
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2') }}>Enter Your Mobile Number</Text>
             </View>
             <View>
                 <PhoneInput
@@ -60,6 +61,12 @@ export default function LoginActivity({ navigation, route }) {
                 <TouchableOpacity onPress={() => getOTP()}
                     style={{ height: hp('5'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>GET OTP</Text>
+                </TouchableOpacity>
+            </View>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate('LoginOtp')}
+                    style={{ height: hp('5'), width: wp('20'), backgroundColor: 'white', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>SKIP</Text>
                 </TouchableOpacity>
             </View>
         </View>

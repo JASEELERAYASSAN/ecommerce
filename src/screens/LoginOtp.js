@@ -14,10 +14,12 @@ export default function LoginOtp({ navigation, route }) {
             await confirm.confirm(code).then(() => {
                 Toast.show('Login successfull')
                 navigation.navigate('HomeScreen')
+                setConfirm(confirm)
             }).catch(() => {
                 Toast.show('Please Check Your OTP')
             })
         } catch (error) {
+            console.log(error,'login');
             Toast.show('Failed To Verify OTP')
         }
     }
@@ -33,7 +35,7 @@ export default function LoginOtp({ navigation, route }) {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:'white' }}>
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2') }}>Enter OTP</Text>
             </View>
@@ -50,6 +52,12 @@ export default function LoginOtp({ navigation, route }) {
                 <TouchableOpacity onPress={() => onSubmit()}
                     style={{ height: hp('5'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>SUBMIT</Text>
+                </TouchableOpacity>
+            </View>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}
+                    style={{ height: hp('5'), width: wp('20'), backgroundColor: 'white', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>SKIP</Text>
                 </TouchableOpacity>
             </View>
         </View>

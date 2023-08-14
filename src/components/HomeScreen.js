@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation }) {
     };
 
     const data = [
-        { prodId: 1, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '250', prdTotalPrice: counter[1] ? counter[1] * 200 : 200, quantity: counter[1] || 0, prdDiscount: '-20%' },
+        { prodId: 1, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '-250-', prdTotalPrice: counter[1] ? counter[1] * 200 : 200, quantity: counter[1] || 0, prdDiscount: '-20%' },
         { prodId: 2, prdName: 'Vietnamese Turkey', prdImage: require('../assets/turkey.png'), price: '250', prdTotalPrice: counter[2] ? counter[2] * 200 : 200, quantity: counter[2] || 0, prdDiscount: '-20%' },
         { prodId: 3, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '250', prdTotalPrice: counter[3] ? counter[3] * 200 : 200, quantity: counter[3] || 0, prdDiscount: '-20%' },
         { prodId: 4, prdName: 'Vietnamese Turkey', prdImage: require('../assets/turkey.png'), price: '250', prdTotalPrice: counter[4] ? counter[4] * 200 : 200, quantity: counter[4] || 0, prdDiscount: '-20%' },
