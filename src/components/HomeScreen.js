@@ -30,10 +30,10 @@ export default function HomeScreen({ navigation }) {
     return (
         <ScrollView contentContainerStyle={{ marginBottom: hp('2%'), flexGrow: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }} nestedScrollEnabled={true} >
             <View style={styles.headerView}>
-                <View style={{ width: wp('80'), justifyContent: 'center', height: hp('7.7'),alignItems:'center',marginLeft:wp(10) }}>
+                <View style={{ width: wp('80'), justifyContent: 'center', height: hp('7.7'), alignItems: 'center', marginLeft: wp(10) }}>
                     <Text style={styles.headerText}>Home</Text>
                 </View>
-                <TouchableOpacity style={{ width: wp('20'), justifyContent: 'center',alignItems:'center', height: hp('7.7')  }} onPress={() => navigation.navigate('CheckOutScreen')}>
+                <TouchableOpacity style={{ width: wp('20'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={() => navigation.navigate('CheckOutScreen')}>
                     <MaterialIcon name="cart" size={hp('3%')} color={'white'} />
                 </TouchableOpacity>
             </View>
