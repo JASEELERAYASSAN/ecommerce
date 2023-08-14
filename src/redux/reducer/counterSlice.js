@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 initialState = {
-    cart:[],
-    cartTotal:0
+    value: 0,
 }
 
 const counterSlice = createSlice({
@@ -12,7 +11,7 @@ const counterSlice = createSlice({
         updateAddToCart: (state, action) => {
             const { prodId } = action.payload;
             if (state[prodId]) {
-                state[prodId]++;
+                state[prodId]++;                //product quantity increase by checking product id 
             } else {
                 state[prodId] = 1;
             }
@@ -20,38 +19,15 @@ const counterSlice = createSlice({
         updateRemoveFromCart: (state, action) => {
             const { prodId } = action.payload;
             if (state[prodId] && state[prodId] > 0) {
-                state[prodId]--;
+                state[prodId]--;                         //product quantity decrease by checking product id
             }
         },
-        cartPriceAdd: (state, action) => {
-            const { prodId } = action.payload;
-            // Find the product by ID
-            const product = state.cart.find(item => item.prodId === prodId);
-            if (product) {
-              product.quantity++;
-              product.prdTotalPrice = product.quantity * parseFloat(product.price);
-            }
-            state.cartTotal = state.cart.reduce((total, item) => total + item.prdTotalPrice, 0);
-          },
-
-          cartPriceRemove: (state, action) => {
-            const { prodId } = action.payload;
-            // Find the product by ID
-            const product = state.cart.find(item => item.prodId === prodId);
-            if (product && product.quantity > 0) {
-              product.quantity--;
-              product.prdTotalPrice = product.quantity * parseFloat(product.price);
-            }
-            state.cartTotal = state.cart.reduce((total, item) => total + item.prdTotalPrice, 0);
-          },
     }
 })
 
 export const {
     updateAddToCart,
     updateRemoveFromCart,
-    cartPriceAdd,
-    cartPriceRemove
 } = counterSlice.actions
 
 export default counterSlice.reducer

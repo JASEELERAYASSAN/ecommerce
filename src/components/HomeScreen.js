@@ -11,7 +11,7 @@ export default function HomeScreen({ navigation }) {
 
     const counter = useSelector((state) => state.counter); // Use the entire counter state
     const dispatch = useDispatch()
-    const [isCheckout, setIsCheckout] = useState('false')
+    const [isCheckout, setIsCheckout] = useState('false') // for modal popup
 
     const checkoutPopup = () => {
         setIsCheckout(!isCheckout);

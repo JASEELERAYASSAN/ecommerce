@@ -15,6 +15,8 @@ export default function LoginActivity({ navigation, route }) {
 
     const phoneInput = useRef(null);
 
+    // phone number authentication
+
     async function signInWithPhoneNumber(number) {
         try {
             const confirmation = await auth().signInWithPhoneNumber(number)

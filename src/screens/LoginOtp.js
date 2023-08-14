@@ -8,6 +8,7 @@ export default function LoginOtp({ navigation, route }) {
     const [code, setCode] = useState(route.params.confirm.code ? route.params.confirm.code : '')
     const [confirm, setConfirm] = useState(route.params.confirm)
 
+    //code authentication
     async function confirmCode() {
         try {
             await confirm.confirm(code).then(() => {
