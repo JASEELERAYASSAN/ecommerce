@@ -3,9 +3,12 @@ import { StyleSheet, Text, View, Image, Button, TouchableOpacity, FlatList, Scro
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import CardView from 'react-native-cardview'
 import { useSelector, useDispatch } from 'react-redux'
+import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-simple-toast'
 import { updateAddToCart, updateRemoveFromCart } from '../redux/reducer/counterSlice'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function HomeScreen({ navigation }) {
 
@@ -27,13 +30,31 @@ export default function HomeScreen({ navigation }) {
         { prodId: 7, prdName: 'Siamese Hybrid Chicken', prdImage: require('../assets/hybrid.png'), price: '250', prdTotalPrice: counter[7] ? counter[7] * 200 : 200, quantity: counter[7] || 0, prdDiscount: '-20%' },
     ];
 
+    const handleLogOut = async () => {
+        try {
+            await AsyncStorage.removeItem('userLoggedIn');
+            await auth().signOut();
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'LoginActivity' }],
+            });
+            Toast.show('User LoggedOut Succesfully');
+        } catch (error) {
+            Toast.show('Error logging Out');
+        }
+    };
+
+
     return (
         <ScrollView contentContainerStyle={{ marginBottom: hp('2%'), flexGrow: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }} nestedScrollEnabled={true} >
             <View style={styles.headerView}>
-                <View style={{ width: wp('80'), justifyContent: 'center', height: hp('7.7'), alignItems: 'center', marginLeft: wp(10) }}>
+                <View style={{ width: wp('70'), justifyContent: 'center', height: hp('7.7'), alignItems: 'center', marginLeft: wp(10) }}>
                     <Text style={styles.headerText}>Home</Text>
                 </View>
-                <TouchableOpacity style={{ width: wp('20'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={() => navigation.navigate('CheckOutScreen')}>
+                <TouchableOpacity style={{ width: wp('15'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={handleLogOut}>
+                    <MaterialIcon name="logout" size={hp('3%')} color={'white'} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ width: wp('15'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={() => navigation.navigate('CheckOutScreen')}>
                     <MaterialIcon name="cart" size={hp('3%')} color={'white'} />
                 </TouchableOpacity>
             </View>
