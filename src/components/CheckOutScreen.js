@@ -95,7 +95,8 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', height: hp('13'), width: wp('96'), alignItems: 'center', justifyContent: 'space-evenly', margin: hp('1') }}>
-                    <View style={{ height: hp('9'), width: wp('25'), borderWidth: wp('.4'), borderColor: '#08C25D', alignItems: 'center', justifyContent: 'center', borderRadius: wp('2') }}>
+                   
+                    <View style={{ height: hp('9'), width: wp('25'), alignItems: 'center', justifyContent: 'center', borderRadius: wp('2'), borderWidth: wp('.4'), borderColor: '#08C25D', }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={{ textAlign: 'center', color: 'black', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>Morning</Text>
                             <Image source={require('../assets/morning.png')} />
@@ -117,11 +118,11 @@ export default function CheckOutScreen({ navigation: { goBack }, route }) {
                         <Text style={{ textAlign: 'center', color: '#A6A6A6', fontWeight: '400', fontSize: hp('1.5'), margin: hp('1') }}>6PM to 7PM</Text>
                     </View>
                 </View>
-                <View style={{ height: hp('8'), width: wp('96'), }}>
-                    <Text style={{ color: '#A6A6A6', fontWeight: '500', fontSize: hp('2'), margin: hp('1') }}>Delivery address</Text>
-                    <View style={{ flexDirection: 'row', height: hp('8'), width: wp('90'), alignItems: 'center', justifyContent: 'space-around' }}>
-                        <Text style={{ height: hp('8'), width: wp('39'), textAlign: 'center', color: 'black', fontWeight: '300', fontSize: hp('2') }}>416 Grandrose Ave. Des Plaines, IL 60016</Text>
-                        <Image source={require('../assets/write.png')} style={{ marginBottom: hp('2.5') }} />
+                <View style={{ height: hp('10'), width: wp('96'), }}>
+                    <Text style={{ color: '#A6A6A6', fontWeight: '400', fontSize: hp('2'), marginLeft: hp('2') }}>Delivery address</Text>
+                    <View style={{ flexDirection: 'row', height: hp('10'), width: wp('90'), alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Text style={{ height: hp('10'), width: wp('39'), textAlign: 'left', color: 'black', fontWeight: '300', fontSize: hp('2'),margin:hp('6'),marginBottom:hp('2') }}>416 Grandrose Ave. Des Plaines, IL 60016</Text>
+                        <Image source={require('../assets/write.png')} style={{ marginBottom: hp('1') }} />
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', height: hp('7'), width: wp('75'), alignItems: 'center', justifyContent: 'center', margin: hp('2') }}>

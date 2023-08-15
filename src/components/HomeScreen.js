@@ -54,7 +54,7 @@ export default function HomeScreen({ navigation }) {
                 <TouchableOpacity style={{ width: wp('15'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={handleLogOut}>
                     <MaterialIcon name="logout" size={hp('3%')} color={'white'} />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ width: wp('15'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={() => navigation.navigate('CheckOutScreen')}>
+                <TouchableOpacity style={{ width: wp('20'), justifyContent: 'center', alignItems: 'center', height: hp('7.7') }} onPress={() => navigation.navigate('CheckOutScreen')}>
                     <MaterialIcon name="cart" size={hp('3%')} color={'white'} />
                 </TouchableOpacity>
             </View>

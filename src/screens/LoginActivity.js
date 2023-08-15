@@ -99,9 +99,9 @@ export default function LoginActivity({ navigation, route }) {
                     }}
                 />
             </View>
-            <View>
+            <View style={{height:hp('10'), width: wp('90'),alignItems:'center',justifyContent:'center'}}>
                 <TouchableOpacity onPress={() => getOTP()}
-                    style={{ height: hp('5'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    style={{ height: hp('6'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>GET OTP</Text>
                 </TouchableOpacity>
             </View>
@@ -117,15 +117,15 @@ export default function LoginActivity({ navigation, route }) {
                     style={{ height: hp('5'), width: wp('90'), borderWidth: wp('.1'), borderColor: 'gray', borderRadius: hp('1'), margin: hp('1.5'), textAlign: 'center' }}
                 />
             </View>
-            <View>
+            <View style={{height:hp('10'), width: wp('90'),alignItems:'center',justifyContent:'center'}}>
                 <TouchableOpacity onPress={() => onSubmit()}
-                    style={{ height: hp('5'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    style={{ height: hp('6'), width: wp('90'), backgroundColor: 'green', justifyContent: 'center', borderRadius: wp('2.5') }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>SUBMIT</Text>
                 </TouchableOpacity>
             </View>
-            <View>
+            <View style={{height:hp('10'), width: wp('90'),alignItems:'center',justifyContent:'center'}}>
                 <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}
-                    style={{ height: hp('5'), width: wp('20'), backgroundColor: 'white', justifyContent: 'center', borderRadius: wp('2.5') }}>
+                    style={{ height: hp('6'), width: wp('20'), backgroundColor: 'white', justifyContent: 'center', borderRadius: wp('2.5') }}>
                     <Text style={{ color: 'black', fontWeight: 'bold', fontSize: hp('2'), textAlign: 'center' }}>SKIP</Text>
                 </TouchableOpacity>
             </View>
