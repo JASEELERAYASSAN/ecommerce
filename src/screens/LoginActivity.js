@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native'
 import PhoneInput from "react-native-phone-number-input";
 import Toast from "react-native-simple-toast";
 import auth from '@react-native-firebase/auth';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function LoginActivity({ navigation, route }) {
 
@@ -34,6 +36,7 @@ export default function LoginActivity({ navigation, route }) {
 
     async function confirmCode() {
         try {
+
             await confirm.confirm(code).then(() => {
                 Toast.show('Login successfull')
                 navigation.navigate('HomeScreen')
@@ -41,11 +44,27 @@ export default function LoginActivity({ navigation, route }) {
             }).catch(() => {
                 Toast.show('Please Check Your OTP')
             })
+            await AsyncStorage.setItem('userLoggedIn', 'true');
         } catch (error) {
             console.log(error, 'login');
             Toast.show('Failed To Verify OTP')
         }
     }
+
+    const checkUserSession = async () => {
+        try {
+            const userLoggedIn = await AsyncStorage.getItem('userLoggedIn');
+            if (userLoggedIn === 'true') {
+                navigation.navigate('HomeScreen');
+            }
+        } catch (error) {
+            console.error('Error checking user session:', error);
+        }
+    };
+
+    useEffect(() => {
+        checkUserSession();
+    }, []);
 
     const onSubmit = () => {
         if (code.length === 6) {
